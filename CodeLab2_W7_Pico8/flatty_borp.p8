@@ -236,7 +236,11 @@ function game_update()
 			score+=1
 		end
 
-		--Need to fix the ground collision
+		--BUG FIX: add ground collision
+		if(bird_y+8>=112) then
+			sfx(1)
+			state="end"
+		end
 	
 	end
 	
