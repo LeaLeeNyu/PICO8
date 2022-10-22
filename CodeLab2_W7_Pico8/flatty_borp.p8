@@ -236,12 +236,16 @@ function game_update()
 			score+=1
 		end
 
-		--BUG FIX: add ground collision
+		--BUG FIX: add ground/sky collision
 		if(bird_y+8>=112) then
 			sfx(1)
 			state="end"
 		end
-	
+
+		if(bird_y<=0) then
+			sfx(1)
+			state="end"
+		end
 	end
 	
 	--Move the ground to left
@@ -451,6 +455,11 @@ function end_update()
 
 	--if player presses the x button, restart the game
 	if(btn(5,0)) reset_game()
+
+	--Bug Fix: the best score is updated as soon as the game ends
+	if(score>best)then
+		best = score
+	end
 
 	--Need to fix the resetting tubes and bird
 	
