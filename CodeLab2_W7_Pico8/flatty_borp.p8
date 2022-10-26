@@ -189,18 +189,16 @@ end
 
 --_t represent tube
 function overlap(_t)
+	-- Bug fix: The overlap condition
+
 	--check top 
-	if(bird_x+8>=_t.x and
-		bird_x<=_t.x+_t.hit_w and
-		bird_y+8>=0 and
-		bird_y<=_t.y+(3*_t.hit_h))then
+	if(bird_x+16>=_t.x and
+		bird_y+16<=_t.y+(4*_t.hit_h))then
 		return true
 	end
 	--check buttom 
-	if(bird_x+8>=_t.x and
-		bird_x<=_t.x+_t.hit_w and
-		bird_y+8>=_t.y+(3*_t.hit_h)+gap and
-		bird_y<=128)then
+	if(bird_x+16>=_t.x and
+		bird_y>=_t.y+(3*_t.hit_h)+gap)then
 		return true
 	end
 end
