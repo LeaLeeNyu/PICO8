@@ -124,6 +124,13 @@ function reset_game()
 	t_count=0
 	
 	state="game"
+
+	--BUG FIX: reset the background objects
+	tubes={}
+	ground={}
+	clouds={}
+	hills={}
+	_init()
 	
 end
 
