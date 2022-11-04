@@ -24,6 +24,8 @@ frame = 0
 powerupCurrentTime =0
 overlapPowerup =false
 powerupTime = 250
+--prevent the powerup overlap with the tubes
+tubeIsOnZero = false
 
 --ground vars
 ground={}
@@ -229,6 +231,18 @@ function overlap(_t)
 	end
 end
 
+function tubeOnZero()
+	tubeIsOnZero = false
+	
+	for t in all(tubes) do
+		if(t.tubes_x<=36)then
+			tubeIsOnZero= true
+			break
+		end
+	end
+	
+end
+
 --mod: collide with powerup
 function overlapPower()
 	if(
@@ -350,7 +364,7 @@ function game_update()
 
 	bird_move()		
 
-if(overlapPowerup == false)then
+if(overlapPowerup == false and tubeIsOnZero == false)then
 	--mod:move powerup 
 	powerup_move()
 
@@ -402,6 +416,9 @@ end
 --mod:move powerup from right to left
 function powerup_move()
 	powerup_x-=powerup_v	
+	if(powerup_x<=0)then
+		powerup_x = 128
+	end
 end
 
 function spawnPowerup()
